@@ -78,16 +78,14 @@ public class Main {
             return;
         }
 
-      
-boolean registrado = inventario.insertar(id, nombre);
+        boolean registrado = inventario.insertar(id, nombre);
 
-if (registrado) {
-    System.out.println("Producto registrado correctamente.");
-} else {
-    System.out.println(
-            "No se registró el producto: el ID " + id + " ya existe."
-    );
-}
+        if (registrado) {
+            System.out.println("Producto registrado correctamente.");
+        } else {
+            System.out.println(
+                    "No se registró el producto: el ID " + id + " ya existe.");
+        }
     }
 
     /**
@@ -106,12 +104,10 @@ if (registrado) {
             System.out.println("Producto encontrado:");
             System.out.println(
                     "ID: " + producto.id +
-                    " | Nombre: " + producto.nombre
-            );
+                            " | Nombre: " + producto.nombre);
         } else {
             System.out.println(
-                    "No existe un producto con el ID " + id + "."
-            );
+                    "No existe un producto con el ID " + id + ".");
         }
     }
 
