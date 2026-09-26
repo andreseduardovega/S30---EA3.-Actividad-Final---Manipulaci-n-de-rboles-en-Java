@@ -533,7 +533,7 @@ También se explicará:
 
 ### Enlace al video
 
-**Pegar aquí el enlace del video individual.**
+[Ver video de explicación individual](https://drive.google.com/file/d/1QrtZL0t1NOydrXxFH5T9FZ2dL-nugyYx/view?usp=sharing)
 
 ---
 
