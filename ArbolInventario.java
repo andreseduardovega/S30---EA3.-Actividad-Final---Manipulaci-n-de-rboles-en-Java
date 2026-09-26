@@ -8,21 +8,23 @@ public class ArbolInventario {
 
     /**
      * Inserta un producto en el árbol.
-     * La ubicación se determina comparando los ID.
      *
      * @param id identificador del producto
      * @param nombre nombre del producto
+     * @return true si el producto fue registrado;
+     *         false si el ID ya existe.
      */
-    public void insertar(int id, String nombre) {
+    public boolean insertar(int id, String nombre) {
+
         Producto nuevo = new Producto(id, nombre);
 
         // Si el árbol está vacío, el nuevo producto se convierte en la raíz.
         if (raiz == null) {
             raiz = nuevo;
-            return;
+            return true;
         }
 
-        insertarRecursivo(raiz, nuevo);
+        return insertarRecursivo(raiz, nuevo);
     }
 
     /**
@@ -31,45 +33,37 @@ public class ArbolInventario {
      *
      * @param actual nodo desde el cual continúa la búsqueda
      * @param nuevo producto que se desea insertar
+     * @return true si se insertó; false si el ID ya existe
      */
-    private void insertarRecursivo(Producto actual, Producto nuevo) {
+    private boolean insertarRecursivo(Producto actual, Producto nuevo) {
 
         if (nuevo.id < actual.id) {
 
             // Los ID menores se ubican en el subárbol izquierdo.
             if (actual.izquierdo == null) {
 
-                // El puntero izquierdo pasa a referenciar el nuevo nodo.
+                // El puntero izquierdo referencia al nuevo nodo.
                 actual.izquierdo = nuevo;
-
-            } else {
-
-                // Continúa la búsqueda en el subárbol izquierdo.
-                insertarRecursivo(actual.izquierdo, nuevo);
+                return true;
             }
+
+            return insertarRecursivo(actual.izquierdo, nuevo);
 
         } else if (nuevo.id > actual.id) {
 
             // Los ID mayores se ubican en el subárbol derecho.
             if (actual.derecho == null) {
 
-                // El puntero derecho pasa a referenciar el nuevo nodo.
+                // El puntero derecho referencia al nuevo nodo.
                 actual.derecho = nuevo;
-
-            } else {
-
-                // Continúa la búsqueda en el subárbol derecho.
-                insertarRecursivo(actual.derecho, nuevo);
+                return true;
             }
 
-        } else {
-
-            // No se permiten dos productos con el mismo ID.
-            System.out.println(
-                    "El ID " + nuevo.id +
-                    " ya existe en el inventario."
-            );
+            return insertarRecursivo(actual.derecho, nuevo);
         }
+
+        // El ID ya existe. No se inserta un producto duplicado.
+        return false;
     }
 
     /**
@@ -103,7 +97,7 @@ public class ArbolInventario {
             // Primero se recorren los nodos menores.
             recorridoInorden(actual.izquierdo);
 
-            // Después se muestra el nodo actual.
+            // Se muestra el nodo actual.
             System.out.println(
                     "ID: " + actual.id +
                     " | Nombre: " + actual.nombre

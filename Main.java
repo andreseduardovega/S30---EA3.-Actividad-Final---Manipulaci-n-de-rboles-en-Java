@@ -78,9 +78,16 @@ public class Main {
             return;
         }
 
-        inventario.insertar(id, nombre);
+      
+boolean registrado = inventario.insertar(id, nombre);
 
-        System.out.println("Producto registrado correctamente.");
+if (registrado) {
+    System.out.println("Producto registrado correctamente.");
+} else {
+    System.out.println(
+            "No se registró el producto: el ID " + id + " ya existe."
+    );
+}
     }
 
     /**
